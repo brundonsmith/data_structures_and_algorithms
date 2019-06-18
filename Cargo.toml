@@ -1,0 +1,7 @@
+[package]
+name = "data_structures_and_algorithms"
+version = "0.1.0"
+authors = ["Brandon Smith <mail@brandonsmith.ninja>"]
+edition = "2018"
+
+[dependencies]
