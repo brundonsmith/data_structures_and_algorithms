@@ -5,7 +5,7 @@ mod sort_test {
     extern crate rand;
     use std::time::Instant;
 
-    use crate::algorithms::sort::{SortFn,bubble_sort,insertion_sort,selection_sort,quick_sort,partition};
+    use crate::algorithms::sort::{SortFn,bubble_sort,insertion_sort,selection_sort,quick_sort,partition,merge_sort};
     
     /*
     const TEST_CASE_1: ([i32;6],[i32;6]) = 
@@ -51,7 +51,7 @@ mod sort_test {
             let test = generate_test_case();
             let mut arr = test.clone();
             func(&mut arr);
-            //println!("\n<- {:?} \n-> {:?}", test, arr);
+            //println!("\n<- {:?} \n-> {:?}\n", test, arr);
             assert!(is_sorted(&arr));
         }
 
@@ -88,5 +88,10 @@ mod sort_test {
         let mut arr = [1, 7, 9, 6];
         partition(&mut arr);
         assert_eq!(arr, [1, 7, 6, 9]);
+    }
+
+    #[test]
+    fn merge() {
+        test_sort(&merge_sort, "merge_sort");
     }
 }
