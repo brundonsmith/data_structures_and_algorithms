@@ -5,3 +5,4 @@ authors = ["Brandon Smith <mail@brandonsmith.ninja>"]
 edition = "2018"
 
 [dependencies]
+rand = "0.6.5"

@@ -1,5 +1,3 @@
 
-mod linked_list;
-
-fn main() {
-}
+mod algorithms;
+mod data_structures;

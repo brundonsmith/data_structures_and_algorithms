@@ -2,7 +2,7 @@
 
 #[cfg(test)]
 mod test {
-    use crate::linked_list::{LinkedList};
+    use crate::data_structures::linked_list::{LinkedList};
 
     #[test]
     fn basic() {

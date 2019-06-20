@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'data_structures_and_algorithms'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=data_structures_and_algorithms",
+                    "--package=data_structures_and_algorithms"
+                ],
+                "filter": {
+                    "name": "data_structures_and_algorithms",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'data_structures_and_algorithms'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=data_structures_and_algorithms",
+                    "--package=data_structures_and_algorithms"
+                ],
+                "filter": {
+                    "name": "data_structures_and_algorithms",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
