@@ -68,23 +68,23 @@ impl<T: Ord> Node<T> {
         }
     }
 
-    /*
+    
     fn remove(&mut self, value: &T) -> Option<T> {
-        if self.left.map(|n| n.value == *value).unwrap_or(false) {
+
+        match &self.left {
+            Some(node) => {
+
+            },
+            None
+        }
+
+        if match &self.left {
             
         } else if self.right.map(|n| n.value == *value).unwrap_or(false) {
 
         }
     }
-    */
 
-    fn rotate_left_child_left(&mut self) {
-        //mem::replace(self, Node::new(v));
-    }
-    
-    fn rotate_left_child_right(&mut self) {
-        
-    }
 
     fn contains(&self, value: &T) -> bool {
         self.value == *value 
