@@ -4,6 +4,8 @@ use std::iter::FromIterator;
 use std::u32;
 
 pub struct DirectedGraph {
+    // <source_node, Vec<(destination_node, weight)>>
+    // Used HashMap for efficient lookup of a source node's neighbors.
     node_edges: HashMap<usize,Vec<(usize,u32)>>
 }
 
@@ -36,7 +38,7 @@ impl DirectedGraph {
     pub fn add_edge(&mut self, start_node: usize, end_node: usize, weight: u32) {
         match &mut self.node_edges.get_mut(&start_node) {
             Some(edge_list) => edge_list.push((end_node, weight)),
-            None => eprintln!("Failed to create edge: node {} doesn't exist in this graph!", &start_node)
+            None => eprintln!("Failed to create edge: start node {} doesn't exist in this graph!", &start_node)
         };
     }
 
