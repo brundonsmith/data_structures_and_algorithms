@@ -70,19 +70,50 @@ impl<T: Ord> Node<T> {
 
     
     fn remove(&mut self, value: &T) -> Option<T> {
+        if match &self.left { Some(n) => n.value == *value, _ => false } {
+            return Some(self.remove_left());
+        } else if match &self.right { Some(n) => n.value == *value, _ => false } {
+            return Some(self.remove_right());
+        } else {
+            return None;
+        }
+    }
 
-        match &self.left {
-            Some(node) => {
+    fn remove_left(&mut self) -> T {
+        // safe to unwrap because this method call doesn't make sense if there's no left node
+        let mut left = self.left.take().unwrap();
 
-            },
-            None
+        let left_has_left = match left.left { Some(_) => true, None => false };
+        let left_has_right =  match left.right { Some(_) => true, None => false };
+
+        if left_has_left && !left_has_right {
+            self.left = left.left;
+        } else if !left_has_left && left_has_right {
+            self.left = left.right;
+        } else if left_has_left && left_has_right {
+
+            // find replacement
+            let mut focal_parent;
+            let mut focal = unwrap_mut(&mut left.right);
+            while focal.left.is_some() {
+                focal_parent = mem::replace(&mut focal, unwrap_mut(&mut focal.left));
+            }
+
+            // replace replacement
+            let focal_replacement = focal.right.take();
+            focal_parent.left = focal_replacement;
+
+            mem::replace(focal.left, left.left);
+            focal.right = left.right;
+            mem::replace(&mut self.left, Some(*focal));
+            //self.left = Some(focal);
         }
 
-        if match &self.left {
-            
-        } else if self.right.map(|n| n.value == *value).unwrap_or(false) {
+        return left.value;
+    }
 
-        }
+    fn remove_right(&mut self) -> T {
+        unimplemented!()
     }
 
 
@@ -98,3 +129,26 @@ impl<T: Ord> Node<T> {
             }
     }
 }
+
+fn unwrap_ref<'a,T>(opt: &'a Option<T>) -> &'a T {
+    opt.as_ref().unwrap()
+}
+
+fn unwrap_mut<'a,T>(opt: &'a mut Option<T>) -> &'a mut T {
+    opt.as_mut().unwrap()
+}
+
+
+
+/*
+fn func(foo: Option<i32>) {
+    let Some(bar) = foo;
+    
+    println!("{}", bar + 12);
+}
+
+
+fn foo() -> i32 {
+    
+}
+*/
